@@ -60,8 +60,10 @@ FoodDelivery/
 │   ├── routes/             # Auth, customer, restaurant, rider, order, and payment APIs
 │   └── middleware/         # Authentication and authorization middleware
 ├── package.json            # Root scripts
-├── SETUP.md                # Detailed setup and troubleshooting guide
-└── QUICK_START.md          # Short local-development checklist
+├── docs/                   # Setup, feature, deployment, and audit documentation
+│   ├── QUICK_START.md      # Short local-development checklist
+│   └── SETUP.md            # Detailed setup and troubleshooting guide
+└── README.md
 ```
 
 ## 🚀 Quick start
@@ -104,7 +106,7 @@ REACT_APP_MAPBOX_TOKEN=your_mapbox_access_token
 REACT_APP_SOCKET_URL=http://localhost:5000
 ```
 
-Optional server variables for production integrations are documented in [SETUP.md](./SETUP.md), including Twilio, Cloudinary, Stripe, JazzCash, Easypaisa, and email configuration.
+Optional server variables for production integrations are documented in [SETUP.md](./docs/SETUP.md), including Twilio, Cloudinary, Stripe, JazzCash, Easypaisa, and email configuration.
 
 ### 3. Start MongoDB
 
@@ -177,9 +179,9 @@ During development, OTP values are logged in the server terminal when Twilio is 
 
 ## 📚 Additional documentation
 
-- [Quick start](./QUICK_START.md)
-- [Detailed setup and troubleshooting](./SETUP.md)
-- [Location sharing documentation](./LOCATION_SHARING_DOCUMENTATION_INDEX.md)
+- [Quick start](./docs/QUICK_START.md)
+- [Detailed setup and troubleshooting](./docs/SETUP.md)
+- [Location sharing documentation](./docs/LOCATION_SHARING_DOCUMENTATION_INDEX.md)
 
 ## 📄 License
 
