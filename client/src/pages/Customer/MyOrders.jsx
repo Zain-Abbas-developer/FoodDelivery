@@ -114,7 +114,7 @@ const MyOrders = () => {
                 <div className="mt-4 md:mt-0 md:ml-4">
                   {order.status !== 'delivered' && order.status !== 'cancelled' && (
                     <Link
-                      to={`/orders/${order._id}/track`}
+                      to={`/customer/orders/${order._id}/track`}
                       className="btn-primary"
                     >
                       Track Order
@@ -129,6 +129,4 @@ const MyOrders = () => {
     </div>
   );
 };
-
 export default MyOrders;
-

@@ -10,7 +10,7 @@ const Cart = ({ onClose }) => {
 
   const handleCheckout = () => {
     onClose();
-    navigate('/checkout');
+    navigate('/customer/checkout');
   };
 
   return (
