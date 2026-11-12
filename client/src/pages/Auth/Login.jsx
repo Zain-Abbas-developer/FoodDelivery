@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import { FaUtensils, FaEnvelope, FaLock } from 'react-icons/fa';
 import { useAuth } from '../../context/AuthContext';
 import { useTheme } from '../../context/ThemeContext';
-import toast from 'react-hot-toast';
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
