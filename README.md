@@ -163,6 +163,19 @@ During development, OTP values are logged in the server terminal when Twilio is 
 | `cd client && npm run build` | Create a production frontend build |
 | `cd client && npm test` | Run frontend tests |
 
+## ☁️ Deploy to Vercel and Render
+
+This repository includes deployment configuration for the split frontend/backend setup:
+
+1. Create a Render Web Service from this repository using `render.yaml`. It runs the Express API from `server` and exposes `/api/health`.
+2. Set the Render environment variables, especially `MONGODB_URI`, `JWT_SECRET`, and `CLIENT_URL`.
+3. Create a Vercel project from this repository with **Root Directory** set to `client`.
+4. Add `REACT_APP_API_URL=https://<your-render-service>.onrender.com/api` to Vercel.
+5. Add `REACT_APP_SOCKET_URL=https://<your-render-service>.onrender.com` if socket connections are enabled by the frontend.
+6. Set Render `CLIENT_URL` to the Vercel deployment URL, then redeploy the Render service.
+
+Never commit provider credentials or `.env` files. MongoDB Atlas must allow connections from Render.
+
 ## 🌍 Pakistan-focused capabilities
 
 - PKR currency and local delivery workflows
