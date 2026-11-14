@@ -127,7 +127,7 @@ const Checkout = () => {
     fetchRestaurant();
 
     return () => controller.abort();
-  }, [restaurantId]);
+  }, [restaurantId, cart.length]);
 
   // Get customer location
   useEffect(() => {

@@ -18,7 +18,6 @@ import {
   FaBox,
   FaArrowRight,
   FaRedo,
-  FaClock,
   FaStore,
   FaUser,
   FaHome,

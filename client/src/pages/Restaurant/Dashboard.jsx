@@ -15,7 +15,6 @@ import {
   FaMapMarkerAlt,
   FaPhone,
   FaArrowRight,
-  FaPlus,
   FaExclamationCircle,
   FaHome,
 } from "react-icons/fa";

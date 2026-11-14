@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -18,8 +18,6 @@ import VerifyOTP from "./pages/Auth/VerifyOTP";
 import CustomerDashboard from "./pages/Customer/Dashboard";
 import RestaurantDashboard from "./pages/Restaurant/Dashboard";
 import RiderDashboard from "./pages/Rider/Dashboard";
-import Checkout from "./pages/Customer/Checkout";
-import OrderTracking from "./pages/Customer/OrderTracking";
 
 function App() {
   return (

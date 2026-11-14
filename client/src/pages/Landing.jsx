@@ -758,15 +758,15 @@ const Landing = () => {
             </p>
 
             <div className="flex gap-5">
-              <a href="#" className="hover:text-primary-600 transition">
+              <a href="/" className="hover:text-primary-600 transition">
                 Privacy
               </a>
 
-              <a href="#" className="hover:text-primary-600 transition">
+              <a href="/" className="hover:text-primary-600 transition">
                 Terms
               </a>
 
-              <a href="#" className="hover:text-primary-600 transition">
+              <a href="/" className="hover:text-primary-600 transition">
                 Help
               </a>
             </div>

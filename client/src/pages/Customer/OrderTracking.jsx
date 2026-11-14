@@ -329,7 +329,7 @@ const OrderTracking = () => {
     return () => {
       navigator.geolocation.clearWatch(watchId);
     };
-  }, [order?.status, id, shareCustomerLocation]);
+  }, [order, order?.status, id, shareCustomerLocation]);
 
   // Manually share location
   const manuallyShareLocation = async () => {
