@@ -9,6 +9,7 @@ const app = express();
 const server = http.createServer(app);
 
 const allowedOrigins = [
+  'https://food-delivery-rho-two.vercel.app',
   'http://localhost:3000',
   'http://localhost:3001',
   process.env.CLIENT_URL
