@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { FaCheckCircle, FaTimesCircle, FaClock } from 'react-icons/fa';
 import axios from 'axios';
@@ -13,59 +13,66 @@ const OrderManagement = ({ restaurant }) => {
   const [filter, setFilter] = useState('all');
   const [selectedOrder, setSelectedOrder] = useState(null);
 
-  useEffect(() => {
-    fetchOrders();
-    const cleanupSocket = connectSocket();
 
-    return () => {
-      if (cleanupSocket) {
-        cleanupSocket();
-      }
-    };
-  }, [filter]);
+  const connectSocket = useCallback(() => {
+  const socketUrl =
+    process.env.REACT_APP_SOCKET_URL || 'http://localhost:5000';
 
-  const connectSocket = () => {
-    const socketUrl =
-      process.env.REACT_APP_SOCKET_URL || 'http://localhost:5000';
+  const socket = io(socketUrl);
 
-    const socket = io(socketUrl);
+  if (restaurant?._id) {
+    socket.emit('join-room', `restaurant-${restaurant._id}`);
+  }
 
-    if (restaurant?._id) {
-      socket.emit('join-room', `restaurant-${restaurant._id}`);
-    }
+  socket.on('new-order', (order) => {
+    setOrders((prev) => [order, ...prev]);
+    toast.success('New order received!');
+  });
 
-    socket.on('new-order', (order) => {
-      setOrders((prev) => [order, ...prev]);
-      toast.success('New order received!');
-    });
-
-    return () => {
-      socket.disconnect();
-    };
+  return () => {
+    socket.disconnect();
   };
+}, [restaurant?._id]);
 
-  const fetchOrders = async () => {
-    try {
-      setLoading(true);
+const fetchOrders = useCallback(async () => {
+  try {
+    setLoading(true);
 
-      const token = localStorage.getItem('token');
-      const params = filter !== 'all' ? { status: filter } : {};
+    const token = localStorage.getItem('token');
+    const params = filter !== 'all' ? { status: filter } : {};
 
-      const response = await axios.get(`${API_URL}/restaurant/orders`, {
+    const response = await axios.get(
+      `${API_URL}/restaurant/orders`,
+      {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`
         },
-        params,
-      });
+        params
+      }
+    );
 
-      setOrders(response.data);
-    } catch (error) {
-      console.error('Error fetching orders:', error);
-      toast.error('Failed to load orders');
-    } finally {
-      setLoading(false);
-    }
+    setOrders(response.data);
+  } catch (error) {
+    console.error('Error fetching orders:', error);
+    toast.error('Failed to load orders');
+  } finally {
+    setLoading(false);
+  }
+}, [filter]);
+
+// Fetch orders whenever the filter changes
+useEffect(() => {
+  fetchOrders();
+}, [fetchOrders]);
+
+// Connect socket independently of the filter
+useEffect(() => {
+  const cleanupSocket = connectSocket();
+
+  return () => {
+    cleanupSocket();
   };
+}, [connectSocket]);
 
   const updateOrderStatus = async (orderId, status) => {
     try {

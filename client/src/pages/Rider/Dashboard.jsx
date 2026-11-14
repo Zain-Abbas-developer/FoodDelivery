@@ -60,13 +60,11 @@ const RiderDashboard = () => {
     { id: "earnings", label: "Earnings", icon: FaChartBar },
   ];
 
-  const getToken = () => localStorage.getItem("token");
-
-  const getAuthConfig = () => ({
-    headers: {
-      Authorization: `Bearer ${getToken()}`,
-    },
-  });
+  const getAuthConfig = useCallback(() => ({
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem("token")}`,
+  },
+}), []);
 
   // Fetch Available Orders
   const fetchAvailableOrders = useCallback(async () => {
@@ -104,7 +102,7 @@ const RiderDashboard = () => {
         toast.error("Please allow location access to find nearby orders.");
       }
     }
-  }, []);
+  }, [getAuthConfig]);
 
   // Fetch My Orders
   const fetchMyOrders = useCallback(async () => {
@@ -120,7 +118,7 @@ const RiderDashboard = () => {
     } catch (error) {
       console.error("Error fetching my orders:", error);
     }
-  }, []);
+  }, [getAuthConfig]);
 
   // Fetch Earnings
   const fetchEarnings = useCallback(async () => {
@@ -134,7 +132,7 @@ const RiderDashboard = () => {
     } catch (error) {
       console.error("Error fetching earnings:", error);
     }
-  }, []);
+  }, [getAuthConfig]);
 
   // Update Rider Location
   const updateLocation = useCallback(() => {
@@ -164,7 +162,7 @@ const RiderDashboard = () => {
         maximumAge: 15000,
       }
     );
-  }, []);
+  }, [getAuthConfig]);
 
   // Initial Data Fetch
   const loadDashboard = useCallback(async () => {
