@@ -78,9 +78,36 @@ router.post(
         message: "Registration successful. OTP sent to your phone.",
         userId: user._id,
       });
-    } catch (error) {
+    } 
+    catch (error) {
       console.error("Registration error:", error);
-      res.status(500).json({ message: "Server error", error: error.message });
+
+      // Handle duplicate MongoDB records
+      if (error.code === 11000) {
+        const field = Object.keys(error.keyPattern || {})[0];
+
+        if (field === "phone") {
+          return res.status(409).json({
+            message:
+              "This phone number is already registered. Please use another number or login.",
+          });
+        }
+
+        if (field === "email") {
+          return res.status(409).json({
+            message:
+              "This email is already registered. Please login or use another email.",
+          });
+        }
+
+        return res.status(409).json({
+          message: "This account already exists.",
+        });
+      }
+
+      res.status(500).json({
+        message: "Server error. Please try again later.",
+      });
     }
   },
 );
