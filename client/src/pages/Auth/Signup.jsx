@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import PhoneInput from 'react-phone-number-input';
+import './react-phone-number-input.css';
 import {
   FaUtensils,
   FaUser,
@@ -46,6 +48,13 @@ const Signup = () => {
 
     setError("");
   };
+
+  const handlePhoneChange = (value) => {
+  setFormData((prev) => ({
+    ...prev,
+    phone: value || ''
+  }));
+};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -256,16 +265,14 @@ const Signup = () => {
                 <div className="relative">
                   <FaPhone className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
 
-                  <input
-                    type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    className={inputClass}
-                    placeholder="+92 300 1234567"
-                    autoComplete="tel"
-                    required
-                  />
+                  <PhoneInput
+  international
+  defaultCountry="PK"
+  value={formData.phone}
+  onChange={handlePhoneChange}
+  placeholder="Enter phone number"
+  className="phone-input"
+/>
                 </div>
               </div>
 
