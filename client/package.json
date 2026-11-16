@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.2",
     "framer-motion": "^10.16.16",
+    "intl-tel-input": "^29.5.11",
     "leaflet": "^1.9.4",
     "mapbox-gl": "^3.0.1",
     "react": "^18.2.0",

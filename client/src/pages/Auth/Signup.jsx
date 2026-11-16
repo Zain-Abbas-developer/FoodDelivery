@@ -1,9 +1,8 @@
-
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import PhoneInput from 'react-phone-number-input';
-import './react-phone-number-input.css';
+import PhoneInput from "react-phone-number-input";
+import "./react-phone-number-input.css";
 import {
   FaUtensils,
   FaUser,
@@ -50,11 +49,11 @@ const Signup = () => {
   };
 
   const handlePhoneChange = (value) => {
-  setFormData((prev) => ({
-    ...prev,
-    phone: value || ''
-  }));
-};
+    setFormData((prev) => ({
+      ...prev,
+      phone: value || "",
+    }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -87,7 +86,7 @@ const Signup = () => {
       setError(
         err.response?.data?.message ||
           err.message ||
-          "Something went wrong. Please try again."
+          "Something went wrong. Please try again.",
       );
     } finally {
       setLoading(false);
@@ -105,7 +104,6 @@ const Signup = () => {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950 flex">
-
       {/* Left Side - Brand Section */}
       <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
         <img
@@ -117,7 +115,6 @@ const Signup = () => {
         <div className="absolute inset-0 bg-black/55" />
 
         <div className="relative z-10 flex flex-col justify-between p-12 xl:p-16 text-white w-full">
-
           <Link to="/" className="flex items-center gap-3 w-fit">
             <div className="w-11 h-11 rounded-xl bg-white flex items-center justify-center">
               <FaUtensils className="text-primary-600 text-xl" />
@@ -142,9 +139,8 @@ const Signup = () => {
             </h1>
 
             <p className="text-gray-200 text-base leading-7 max-w-md">
-              Create your account and discover restaurants,
-              explore delicious meals, and enjoy convenient
-              food delivery.
+              Create your account and discover restaurants, explore delicious
+              meals, and enjoy convenient food delivery.
             </p>
           </div>
 
@@ -156,7 +152,6 @@ const Signup = () => {
 
       {/* Right Side - Signup Form */}
       <div className="w-full lg:w-1/2 flex flex-col min-h-screen">
-
         {/* Top Navigation */}
         <div className="flex items-center justify-between px-6 sm:px-10 py-6">
           <Link
@@ -185,12 +180,8 @@ const Signup = () => {
             transition={{ duration: 0.4 }}
             className="w-full max-w-md"
           >
-
             {/* Mobile Logo */}
-            <Link
-              to="/"
-              className="lg:hidden flex items-center gap-3 mb-8"
-            >
+            <Link to="/" className="lg:hidden flex items-center gap-3 mb-8">
               <div className="w-10 h-10 rounded-xl bg-primary-600 flex items-center justify-center">
                 <FaUtensils className="text-white" />
               </div>
@@ -211,7 +202,6 @@ const Signup = () => {
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
-
               {/* Full Name */}
               <div>
                 <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
@@ -257,23 +247,32 @@ const Signup = () => {
               </div>
 
               {/* Phone */}
+              {/* Phone Number */}
               <div>
                 <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
                   Phone Number
                 </label>
 
-                <div className="relative">
-                  <FaPhone className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-
+                <div className="phone-field">
                   <PhoneInput
-  international
-  defaultCountry="PK"
-  value={formData.phone}
-  onChange={handlePhoneChange}
-  placeholder="Enter phone number"
-  className="phone-input"
-/>
+                    defaultCountry="PK"
+                    international
+                    countryCallingCodeEditable={false}
+                    value={formData.phone}
+                    onChange={handlePhoneChange}
+                    placeholder="300 1234567"
+                    className="phone-input"
+                    numberInputProps={{
+                      autoComplete: "tel",
+                      required: true,
+                      "aria-label": "Phone number",
+                    }}
+                  />
                 </div>
+
+                <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+                  Select your country and enter your phone number.
+                </p>
               </div>
 
               {/* Role Selection */}
@@ -360,9 +359,7 @@ const Signup = () => {
 
                   <button
                     type="button"
-                    onClick={() =>
-                      setShowConfirmPassword(!showConfirmPassword)
-                    }
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-700 dark:hover:text-white"
                     aria-label="Toggle confirm password visibility"
                   >
@@ -390,7 +387,6 @@ const Signup = () => {
                 {loading ? "Creating Account..." : "Create Account"}
                 {!loading && <FaArrowRight />}
               </button>
-
             </form>
 
             {/* Login Link */}
@@ -405,7 +401,6 @@ const Signup = () => {
                 </Link>
               </p>
             </div>
-
           </motion.div>
         </div>
       </div>
