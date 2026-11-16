@@ -7,7 +7,6 @@ import {
   FaUtensils,
   FaUser,
   FaEnvelope,
-  FaPhone,
   FaLock,
   FaEye,
   FaEyeSlash,
