@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema({
   },
   isVerified: {
     type: Boolean,
-    default: false
+    default: true // i just change to showcase the account access and demonstrate
   },
   otp: {
     code: String,
