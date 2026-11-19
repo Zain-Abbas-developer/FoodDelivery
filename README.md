@@ -4,6 +4,18 @@ A full-stack food delivery platform built for Pakistan. Customers can discover r
 
 > **Project status:** This repository is an active development project. Payment providers such as JazzCash, Easypaisa, and Stripe may require additional production credentials and configuration.
 
+## 🖼️ App preview
+
+![Food Delivery app landing page](./assets/Landing.png)
+
+The application provides dedicated experiences for customers, restaurant owners, and riders:
+
+<p align="center">
+  <img src="./assets/customer-dashboard.png" alt="Customer dashboard" width="32%" />
+  <img src="./assets/resturant-owner-dashboard.png" alt="Restaurant owner dashboard" width="32%" />
+  <img src="./assets/rider-dashboard.png" alt="Rider dashboard" width="32%" />
+</p>
+
 ## ✨ Features
 
 ### Customer experience
